@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>LynkHidr</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div style="display: inline-block" th:if="${shortUrlCode}">
+    <div><span id="shortUrlSpan" th:text="${shortUrlCode}"></span></div>
+    <div>
+        <button onclick="copyToClipboard()" type="button">Copy To Clipboard</button>
+    </div>
+</div>
+<form method="post" th:action="@{/}">
+    <div>
+        <label>
+            Enter long url
+            <input name="linkUrl" placeholder="Long url" type="text">
+        </label>
+    </div>
+    <div>
+        <button type="submit">Hide link</button>
+    </div>
+</form>
+<script type="text/javascript">
+    const shortUrl = document.location.href
+        + (document.location.href.endsWith('/') ? '' : '/')
+        + document.getElementById('shortUrlSpan').innerText;
+    document.getElementById('shortUrlSpan').innerText = shortUrl;
+
+    function copyToClipboard() {
+        const shortUrlSpan = document.getElementById('shortUrlSpan');
+
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = shortUrlSpan.textContent;
+
+        document.body.appendChild(tempTextArea);
+
+        tempTextArea.select();
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(tempTextArea.value);
+        } else {
+            document.execCommand('copy');
+        }
+        tempTextArea.remove();
+    }
+</script>
+</body>
+</html>
