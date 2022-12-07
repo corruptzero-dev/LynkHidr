@@ -1,3 +1,4 @@
+<sub>***THIS PROJECT IS WIP AND JUST FOR DEPLOY TESTING.***</sub>
 # LynkHidr
 ### Build and run
 
