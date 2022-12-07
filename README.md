@@ -1,5 +1,4 @@
-<sup>***WARNING!***</sup>
-<sub>***THIS PROJECT IS WIP AND JUST FOR DEPLOY TESTING.***</sub>
+<sup>***WARNING! THIS PROJECT IS RAW AND MADE JUST FOR DEPLOY TESTING.***</sup>
 # LynkHidr
 ### Build and run
 
