@@ -23,16 +23,19 @@ public class LinkController {
 
     @GetMapping("/{shortUrlCode}")
     public String redirectToUrl(@PathVariable String shortUrlCode) {
-        log.info("Got shortUrl: " + shortUrlCode);
-        Long linkId = coderService.decode(shortUrlCode);
-        log.info("Got linkId: " + linkId);
-        Link link = service.getById(linkId);
-        String targetUrl = link.getUrl();
-        log.info("Got url: " + linkId);
-        if (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://")) {
-            targetUrl = "http://" + targetUrl;
+        if(!shortUrlCode.equals("favicon.ico")){
+            log.info("Got shortUrl: " + shortUrlCode);
+            Long linkId = coderService.decode(shortUrlCode);
+            log.info("Got linkId: " + linkId);
+            Link link = service.getById(linkId);
+            String targetUrl = link.getUrl();
+            log.info("Got url: " + linkId);
+            if (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://")) {
+                targetUrl = "http://" + targetUrl;
+            }
+            return "redirect:" + targetUrl;
         }
-        return "redirect:" + targetUrl;
+        return "index";
     }
 
     @GetMapping("/")
